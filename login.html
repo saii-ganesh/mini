@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Login to Your Account</h1>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="sign-up.html">Sign Up</a>
+        </nav>
+    </header>
+    
+    <main>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <p id="loginError" style="color: red; display: none;">Invalid Username or Password.</p>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+    
+    <script>
+        function validateLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+            const user = storedUsers.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                // Store logged-in user data
+                localStorage.setItem("loggedIn", JSON.stringify(user));
+                // Redirect to index.html after successful login
+                window.location.href = "index.html";  
+                return false;  // Prevent form submission
+            } else {
+                // Show error message if login fails
+                document.getElementById("loginError").style.display = "block";
+                return false;  // Prevent form submission
+            }
+        }
+    </script>
+</body>
+</html>

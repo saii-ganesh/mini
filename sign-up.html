@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sign Up</h1>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+    
+    <main>
+        <form id="signupForm" onsubmit="return validateSignup()">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="tel" id="mobile" placeholder="Mobile Number" pattern="\d{10}" required title="Please enter a valid 10-digit mobile number">
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="email" id="gmail" placeholder="Gmail (Optional)">
+            <p id="signupError" style="color: red; display: none;">Mobile number must be 10 digits long.</p>
+            <button type="submit">Sign Up</button>
+        </form>
+    </main>
+    
+    <script>
+        function validateSignup() {
+            const mobile = document.getElementById("mobile").value;
+            if (mobile.length !== 10) {
+                document.getElementById("signupError").style.display = "block";  // Show error if mobile number is invalid
+                return false;  // Prevent form submission
+            }
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const gmail = document.getElementById("gmail").value;
+
+            const newUser = {
+                username: username,
+                mobile: mobile,
+                password: password,
+                gmail: gmail
+            };
+
+            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+            existingUsers.push(newUser);
+            localStorage.setItem("users", JSON.stringify(existingUsers));  // Save new user data
+
+            // Redirect to login.html after successful signup
+            window.location.href = "login.html";  
+            return false;  // Prevent form submission
+        }
+    </script>
+</body>
+</html>

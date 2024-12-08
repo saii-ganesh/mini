@@ -1,0 +1,204 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #48C9B0; /* Light greenish-blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #FFD700; /* Golden hover effect */
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    left: 0;
+    bottom: -2px;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+header nav a:hover::after {
+    background-color: #FFD700;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Main Content Styles */
+main {
+    padding: 40px 20px;
+    animation: fadeIn 1s ease-in-out;
+    text-align: center;
+}
+
+/* Form Styles */
+form {
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    animation: slideUp 0.6s ease-out;
+}
+
+form:hover {
+    transform: scale(1.02);
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1.1rem;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus {
+    border-color: #48C9B0; /* Light greenish-blue border on focus */
+    outline: none;
+}
+
+form button {
+    background-color: #48C9B0; /* Button color */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #1ABC9C; /* Darker hover color */
+    transform: translateY(-3px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+form p {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #ff0000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Error Message */
+#error-message {
+    display: none;
+    font-size: 1rem;
+    color: red;
+    margin-top: 10px;
+}
+
+/* Mobile Number Validation */
+input[type="tel"]:invalid {
+    border-color: red;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header nav a {
+        font-size: 1rem;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    form input {
+        padding: 10px;
+    }
+
+    form button {
+        padding: 12px 25px;
+    }
+}
